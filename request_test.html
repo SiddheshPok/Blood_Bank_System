@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Request Blood - Blood Bank</title>
+    <link rel="stylesheet" href="request_style.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+</head>
+
+<body>
+    <main class="main-content">
+        <header class="top-nav">
+            <button class="sidebar-toggle"><i class="fas fa-bars"></i></button>
+            <h1>Request Blood</h1>
+        </header>
+
+        <section class="form-section">
+            <div class="form-container">
+                <h2>Fill Patient Details</h2>
+
+                <div id="responseMessage" style="margin-bottom: 10px; color: green; font-weight: bold;"></div>
+
+                <form class="request-form" id="bloodRequestForm">
+
+                    <div class="form-group">
+                        <label for="name">Patient Name</label>
+                        <input type="text" id="name" name="name" placeholder="Enter patient's name" required />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="blood_group">Blood Group</label>
+                        <select id="blood_group" name="blood_group" required>
+                            <option value="">Select</option>
+                            <option>A+</option>
+                            <option>A-</option>
+                            <option>B+</option>
+                            <option>B-</option>
+                            <option>O+</option>
+                            <option>O-</option>
+                            <option>AB+</option>
+                            <option>AB-</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="unit_required">Units Required</label>
+                        <input type="number" id="unit_required" name="unit_required" placeholder="Enter number of units" required />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="hospital">Hospital Name</label>
+                        <input type="text" id="hospital" name="hospital" placeholder="Enter hospital name" required />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="contact">Contact Number</label>
+                        <input type="text" id="contact" name="contact" placeholder="Enter contact number" required />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="location">Location</label>
+                        <textarea id="location" name="location" rows="3" placeholder="Enter location/address" required></textarea>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">Submit Request</button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        document.getElementById("bloodRequestForm").addEventListener("submit", function(e) {
+            e.preventDefault();
+            const form = e.target;
+            const formData = new FormData(form);
+
+            fetch("request_test.php", {
+                    method: "POST",
+                    body: formData
+                })
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById("responseMessage").innerText = data;
+                    form.reset();
+                })
+                .catch(error => {
+                    document.getElementById("responseMessage").innerText = "❌ Submission failed. Try again.";
+                    console.error("Fetch error:", error);
+                });
+        });
+    </script>
+</body>
+
+</html>

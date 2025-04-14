@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Blood Availability - Blood Bank</title>
+    <link rel="stylesheet" href="availability_style.css" />
+</head>
+
+<body>
+    <main class="main-content">
+        <header class="top-nav">
+            <h1>Blood Availability</h1>
+        </header>
+
+        <section class="availability-section">
+            <div class="availability-container">
+                <label for="bloodSelect">Select Blood Group:</label>
+                <select id="bloodSelect">
+                    <option value="">--Select--</option>
+                    <option>A+</option><option>A-</option><option>B+</option><option>B-</option>
+                    <option>O+</option><option>O-</option><option>AB+</option><option>AB-</option>
+                </select>
+                <button class="btn-view" onclick="showDetails()">View Details</button>
+            </div>
+
+            <div class="blood-stock-card" id="stockCard" style="display:none;">
+                <h3>Available Units for <span id="selectedType"></span></h3>
+                <p class="unit-count" id="unitCount">--</p>
+            </div>
+
+            <div class="btn-group" style="display: none;" id="listBtns">
+                <button class="btn-view" onclick="showDonors()">View Donor List</button>
+                <button class="btn-view" onclick="showRequests()">View Request List</button>
+            </div>
+
+
+            <div id="donorList" style="display:none;">
+                <h3>Donors</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Blood Group</th>
+                            <th>Age</th>
+                            <th>Phone</th>
+                        </tr>
+                    </thead>
+                    <tbody id="donorTable"></tbody>
+                </table>
+            </div>
+
+
+            <div id="requestList" style="display:none;">
+                <h3>Requests</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Blood Group</th>
+                            <th>Units</th>
+                            <th>Hospital</th>
+                            <th>Contact</th>
+                            <th>Location</th>
+                        </tr>
+                    </thead>
+                    <tbody id="requestTable"></tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        function showDetails() {
+            const bloodGroup = document.getElementById("bloodSelect").value;
+            const card = document.getElementById("stockCard");
+            const selectedText = document.getElementById("selectedType");
+            const unitCount = document.getElementById("unitCount");
+            const btnGroup = document.getElementById("listBtns");
+
+            if (bloodGroup !== "") {
+                selectedText.textContent = bloodGroup;
+                card.style.display = "block";
+                btnGroup.style.display = "flex";
+
+                // Fetch stock from PHP
+                fetch(`get_stock.php?blood_group=${encodeURIComponent(bloodGroup)}`)
+                    .then(res => res.text())
+                    .then(data => {
+                        unitCount.textContent = `${data} Units`;
+                    });
+            } else {
+                card.style.display = "none";
+                btnGroup.style.display = "none";
+            }
+        }
+
+        function showDonors() {
+            const bloodGroup = document.getElementById("bloodSelect").value;
+            document.getElementById("donorList").style.display = "block";
+            fetch(`get_donors.php?blood_group=${encodeURIComponent(bloodGroup)}`)
+                .then(res => res.json())
+                .then(data => {
+                    const donorTable = document.getElementById("donorTable");
+                    donorTable.innerHTML = "";
+                    data.forEach(donor => {
+                        donorTable.innerHTML += `<tr><td>${donor.name}</td><td>${donor.blood_group}</td><td>${donor.age}</td><td>${donor.phone}</td></tr>`;
+                    });
+                });
+        }
+
+        function showRequests() {
+            const bloodGroup = document.getElementById("bloodSelect").value;
+            document.getElementById("requestList").style.display = "block";
+            fetch(`get_requests.php?blood_group=${encodeURIComponent(bloodGroup)}`)
+                .then(res => res.json())
+                .then(data => {
+                    const requestTable = document.getElementById("requestTable");
+                    requestTable.innerHTML = "";
+                    data.forEach(req => {
+                        requestTable.innerHTML += `<tr><td>${req.name}</td><td>${req.blood_group}</td><td>${req.unit_required}</td><td>${req.hospital}</td><td>${req.contact}</td><td>${req.location}</td></tr>`;
+                    });
+                });
+        }
+    </script>
+</body>
+
+</html

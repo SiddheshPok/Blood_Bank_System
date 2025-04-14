@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home - Blood Bank</title>
+    <link rel="stylesheet" href="home_style.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+</head>
+
+<body>
+    <header class="header">
+        <div class="header-content">
+            <h1><i class="fas fa-tint"></i> Blood Bank Portal</h1>
+            <p>Your Donation Can Save a Life</p>
+        </div>
+
+
+        <nav class="nav-buttons">
+            <a href="index.html">Home</a>
+            <a href="about.html">About Us</a>
+            <a href="donate.html">Become a Donor</a>
+            <a href="request_test.html">Request Blood</a>
+            <a href="availability.html">Blood Availability</a>
+            <a href="camps.html">Camps</a>
+            <a>Contact</a>
+        </nav>
+
+    </header>
+
+    <main class="home-container">
+
+        <section class="section about">
+            <h2>About Us / Mission</h2>
+            <p>
+                We are dedicated to providing timely access to safe and sufficient blood for those in need. Our mission is to bridge the gap between donors and patients by creating a transparent and efficient platform.
+            </p>
+        </section>
+
+        <section class="section search">
+            <h2>Search Blood by Type & Location</h2>
+            <form class="search-form">
+                <select required>
+          <option value="">Select Blood Group</option>
+          <option>A+</option>
+          <option>A-</option>
+          <option>B+</option>
+          <option>B-</option>
+          <option>O+</option>
+          <option>O-</option>
+          <option>AB+</option>
+          <option>AB-</option>
+        </select>
+                <input type="text" placeholder="Enter your location" required />
+                <button type="submit">Search</button>
+            </form>
+        </section>
+
+        <section class="section camps">
+            <h2>Upcoming Blood Donation Camps</h2>
+            <ul class="camp-list">
+                <li><strong>City Hospital, Pune:</strong> 15 April 2025, 10am - 4pm</li>
+                <li><strong>DY Patil Campus, Akurdi:</strong> 22 April 2025, 9am - 3pm</li>
+                <li><strong>MIT Kothrud:</strong> 29 April 2025, 11am - 5pm</li>
+            </ul>
+        </section>
+
+        <section class="section contact">
+            <h2>Contact / Emergency Helpline</h2>
+            <p><strong>Helpline:</strong> +91 98765 43210</p>
+            <p><strong>Email:</strong> support@bloodbank.org</p>
+            <p><strong>Location:</strong> Blood Bank HQ, Pune, Maharashtra</p>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <p>&copy; 2025 Blood Bank Portal. All rights reserved.</p>
+    </footer>
+</body>
+
+</html>

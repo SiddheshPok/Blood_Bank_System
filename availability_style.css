@@ -1,0 +1,113 @@
+body {
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background-color: #f4f6f8;
+    color: #333;
+}
+
+.top-nav {
+    background-color: #d32f2f;
+    padding: 20px;
+    color: white;
+    text-align: center;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.main-content {
+    padding: 30px;
+}
+
+.availability-section {
+    max-width: 600px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.availability-container {
+    margin-bottom: 20px;
+}
+
+label {
+    font-size: 18px;
+    font-weight: bold;
+    margin-right: 10px;
+}
+
+select {
+    padding: 8px 12px;
+    font-size: 16px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    margin-right: 10px;
+}
+
+.btn-view {
+    padding: 10px 20px;
+    background-color: #d32f2f;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: background-color 0.3s ease;
+}
+
+.btn-view:hover {
+    background-color: #b71c1c;
+}
+
+.blood-stock-card {
+    background-color: white;
+    padding: 20px;
+    margin-top: 20px;
+    border-radius: 12px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.unit-count {
+    font-size: 32px;
+    font-weight: bold;
+    color: #d32f2f;
+}
+
+.btn-group {
+    margin-top: 20px;
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    background-color: #fff;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+th,
+td {
+    padding: 12px 16px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+    font-size: 15px;
+}
+
+th {
+    background-color: #f5f5f5;
+    font-weight: bold;
+    color: #444;
+}
+
+tr:hover {
+    background-color: #fafafa;
+}
+
+h3 {
+    margin-top: 30px;
+    font-size: 22px;
+    color: #d32f2f;
+}
